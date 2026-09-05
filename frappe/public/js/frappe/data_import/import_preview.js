@@ -176,7 +176,11 @@ frappe.data_import.ImportPreview = class ImportPreview {
 			width: "16px",
 			fill: frappe.ui.color.get_color_shade("green", "dark"),
 		});
-		// make successfully imported rows readonly
+		// Successfully imported rows: muted / readonly.
+		// Light theme used extra-light gray + dark text; that washes out in dark mode.
+		const dark =
+			document.documentElement.getAttribute("data-theme-mode") === "dark" ||
+			document.documentElement.getAttribute("data-theme") === "dark";
 		let row_classes = this.datatable
 			.getRows()
 			.filter((row) => this.is_row_imported(row))
@@ -185,8 +189,12 @@ frappe.data_import.ImportPreview = class ImportPreview {
 			.join(",");
 		this.datatable.style.setStyle(row_classes, {
 			pointerEvents: "none",
-			backgroundColor: frappe.ui.color.get_color_shade("gray", "extra-light"),
-			color: frappe.ui.color.get_color_shade("gray", "dark"),
+			backgroundColor: dark
+				? frappe.ui.color.get_color_shade("gray", "dark")
+				: frappe.ui.color.get_color_shade("gray", "extra-light"),
+			color: dark
+				? frappe.ui.color.get_color_shade("gray", "extra-light")
+				: frappe.ui.color.get_color_shade("gray", "dark"),
 		});
 	}
 
