@@ -8,6 +8,25 @@ body {
 	font-variation-settings: "opsz" 24;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+.title-text,
+.modal-title,
+.widget-title,
+.page-card-head h4 {
+	letter-spacing: var(--heading-letter-spacing);
+}
+
 /* checkbox */
 .checkbox {
 	label {
