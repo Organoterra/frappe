@@ -40,7 +40,7 @@ $disabled-input-height: 22px;
 	// LumenOS (Lemma) status surfaces: done/met, caution, destructive
 	--bg-green: #e7f8f0;
 	--bg-yellow: #fff2d0;
-	--bg-orange: #fff2d0;
+	--bg-orange: var(--orange-100);
 	--bg-red: #f9e7eb;
 	--bg-gray: var(--gray-100);
 	--bg-grey: var(--gray-100);
@@ -56,7 +56,7 @@ $disabled-input-height: 22px;
 	--text-on-dark-blue: var(--blue-800);
 	--text-on-green: #527971;
 	--text-on-yellow: #b98401;
-	--text-on-orange: #b98401;
+	--text-on-orange: var(--orange-700);
 	--text-on-red: #be123c;
 	--text-on-gray: var(--gray-700);
 	--text-on-grey: var(--gray-700);

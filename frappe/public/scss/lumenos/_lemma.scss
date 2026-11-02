@@ -5,21 +5,42 @@
 // LumenOS tokens: navy primary, cream page, slate neutrals. Imported last in
 // desk.bundle.scss so it wins over Frappe's own component styles.
 
+// ── Tokens used by this layer, with dark-theme values ───────
+
+:root {
+	--ring-hover: 0 0 0 1px rgba(0, 22, 52, 0.25);
+	--lumenos-band: rgba(241, 245, 249, 0.6);
+	--lumenos-selection: rgba(0, 22, 52, 0.14);
+}
+
+[data-theme="dark"] {
+	--navbar-bg: var(--neutral);
+	--ring: 0 0 0 1px rgba(255, 255, 255, 0.1);
+	--ring-hover: 0 0 0 1px rgba(255, 255, 255, 0.25);
+	--focus-default: 0 0 0 3px rgba(255, 255, 255, 0.25);
+	--lumenos-band: rgba(255, 255, 255, 0.04);
+	--lumenos-selection: rgba(255, 255, 255, 0.2);
+}
+
 // ── Global ──────────────────────────────────────────────────
 
-html,
-body {
+// Equal-width figures only where numbers line up: numeric fields and
+// right-aligned (numeric) list and report columns.
+[data-fieldtype="Currency"],
+[data-fieldtype="Float"],
+[data-fieldtype="Int"],
+[data-fieldtype="Percent"],
+.text-right,
+.dt-cell {
 	font-variant-numeric: lining-nums tabular-nums;
 }
 
 ::selection {
-	background: rgba(0, 22, 52, 0.14);
+	background: var(--lumenos-selection);
 }
 
-* {
-	scrollbar-width: thin;
-	scrollbar-color: var(--scrollbar-thumb-color) transparent;
-}
+// Scrollbars: Frappe's own ::-webkit-scrollbar rules read
+// --scrollbar-thumb-color / --scrollbar-track-color (set in css_variables).
 
 // ── Buttons: 32px, radius 10, medium weight ─────────────────
 
@@ -58,7 +79,7 @@ body {
 .btn-primary {
 	&:hover,
 	&:focus {
-		background-color: rgba(0, 22, 52, 0.85);
+		background-color: color-mix(in srgb, var(--btn-primary) 85%, transparent);
 	}
 }
 
@@ -130,7 +151,7 @@ body .like-disabled-input {
 // ── List and report headers: uppercase, xs, muted ───────────
 
 .list-row-head {
-	background-color: rgba(241, 245, 249, 0.6);
+	background-color: var(--lumenos-band);
 	border-radius: var(--border-radius-lg);
 
 	.list-row-col,
@@ -201,7 +222,7 @@ body .like-disabled-input {
 }
 
 .modal-footer {
-	background-color: rgba(241, 245, 249, 0.5);
+	background-color: var(--lumenos-band);
 	border-top: 1px solid var(--border-color);
 }
 

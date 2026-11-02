@@ -50,7 +50,8 @@ def get_context(context):
 	context["disable_user_pass_login"] = cint(frappe.get_system_settings("disable_user_pass_login"))
 	context["logo"] = get_app_logo()
 	context["shader_controls"] = bool(frappe.conf.developer_mode)
-	context["login_logo"] = (frappe.get_hooks("login_logo_url") or [None])[-1]
+	# Split layout (brand panel + form) spans the page instead of the centred container
+	context.full_width = True
 	context["powered_by_logo"] = (frappe.get_hooks("powered_by_logo_url") or [None])[-1]
 	context["app_name"] = (
 		frappe.get_website_settings("app_name") or frappe.get_system_settings("app_name") or _("Frappe")

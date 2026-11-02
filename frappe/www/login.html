@@ -265,8 +265,10 @@
 {% endblock %}
 
 {% block script %}
-<script>window.login_shader_controls = {{ 1 if shader_controls else 0 }};</script>
+{%- if shader_controls %}
+<script>window.login_shader_controls = 1;</script>
 {{ include_script("login_shader.bundle.js") }}
+{%- endif %}
 <script>{% include "templates/includes/login/login.js" %}</script>
 {% endblock %}
 

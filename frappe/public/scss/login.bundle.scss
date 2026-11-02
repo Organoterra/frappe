@@ -557,14 +557,19 @@ body {
 }
 
 // Split layout: brand panel left, form right
+// In page flow (login.py sets full_width), so the website navbar and the
+// optional login footer stay visible and the page scrolls once.
+.page-content-wrapper:has(.login-split) {
+	padding-top: 0;
+	min-height: 0;
+}
+
 .login-split {
-	position: fixed;
-	inset: 0;
-	z-index: 1;
 	display: grid;
 	grid-template-columns: 1.1fr 1fr;
+	min-height: 100vh;
+	min-height: 100svh;
 	background: var(--bg-color);
-	overflow: auto;
 
 	@include media-breakpoint-down(lg) {
 		grid-template-columns: 1fr;
@@ -594,7 +599,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
-	min-height: 100vh;
+	min-height: 100%;
 	padding: 48px;
 	// Gödel Earth "Moving gradient" shader: the baked tileable texture, painted
 	// twice at different scales with soft-light, drifting one tile per loop.
