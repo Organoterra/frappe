@@ -1,0 +1,233 @@
+// LumenOS component layer.
+//
+// Shapes and component recipes from the Lemma design system (the Gödel AI Hiring
+// app: ~/dev/AI_Hiring/DESIGN.md), mapped onto Frappe's markup. Colours stay on
+// LumenOS tokens: navy primary, cream page, slate neutrals. Imported last in
+// desk.bundle.scss so it wins over Frappe's own component styles.
+
+// ── Tokens used by this layer, with dark-theme values ───────
+
+:root {
+	--ring-hover: 0 0 0 1px rgba(0, 22, 52, 0.25);
+	--lumenos-band: rgba(241, 245, 249, 0.6);
+	--lumenos-selection: rgba(0, 22, 52, 0.14);
+}
+
+[data-theme="dark"] {
+	--navbar-bg: var(--neutral);
+	--ring: 0 0 0 1px rgba(255, 255, 255, 0.1);
+	--ring-hover: 0 0 0 1px rgba(255, 255, 255, 0.25);
+	--focus-default: 0 0 0 3px rgba(255, 255, 255, 0.25);
+	--lumenos-band: rgba(255, 255, 255, 0.04);
+	--lumenos-selection: rgba(255, 255, 255, 0.2);
+}
+
+// ── Global ──────────────────────────────────────────────────
+
+// Equal-width figures only where numbers line up: numeric fields and
+// right-aligned (numeric) list and report columns.
+[data-fieldtype="Currency"],
+[data-fieldtype="Float"],
+[data-fieldtype="Int"],
+[data-fieldtype="Percent"],
+.text-right,
+.dt-cell {
+	font-variant-numeric: lining-nums tabular-nums;
+}
+
+::selection {
+	background: var(--lumenos-selection);
+}
+
+// Scrollbars: Frappe's own ::-webkit-scrollbar rules read
+// --scrollbar-thumb-color / --scrollbar-track-color (set in css_variables).
+
+// ── Buttons: 32px, radius 10, medium weight ─────────────────
+
+.btn {
+	border-radius: var(--border-radius-lg);
+	font-weight: var(--weight-medium);
+	box-shadow: none;
+
+	&:focus-visible {
+		box-shadow: var(--focus-default);
+	}
+}
+
+.btn.btn-xs,
+.btn.btn-sm {
+	border-radius: var(--border-radius);
+}
+
+// Secondary actions are outline buttons
+.btn-default,
+.btn-secondary {
+	background-color: var(--fg-color);
+	border: 1px solid var(--border-color);
+	color: var(--text-color);
+
+	&:hover,
+	&:focus,
+	&:active,
+	&.active {
+		background-color: var(--gray-100);
+		border-color: var(--border-color);
+		color: var(--text-color);
+	}
+}
+
+.btn-primary {
+	&:hover,
+	&:focus {
+		background-color: color-mix(in srgb, var(--btn-primary) 85%, transparent);
+	}
+}
+
+// ── Inputs: bordered, transparent, radius 10 ────────────────
+
+body .form-control,
+body .like-disabled-input,
+body .awesomplete > input {
+	background-color: var(--fg-color);
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius-lg);
+	box-shadow: none;
+}
+
+body .form-control:focus,
+body .awesomplete > input:focus {
+	background-color: var(--fg-color);
+	border-color: var(--primary);
+	box-shadow: var(--focus-default);
+}
+
+body .form-control[disabled],
+body .form-control[readonly],
+body .like-disabled-input {
+	background-color: var(--gray-50);
+}
+
+// ── Tags: rounded-md, xs medium ─────────────────────────────
+
+.indicator-pill,
+.indicator-pill-right,
+.badge {
+	border-radius: var(--border-radius);
+	font-size: var(--text-xs);
+	font-weight: var(--weight-medium);
+}
+
+.indicator-pill,
+.indicator-pill-right {
+	height: 20px;
+	padding: 2px 8px;
+}
+
+// ── Cards: white on a 1px ring, radius 14 ───────────────────
+
+.frappe-card,
+.widget,
+.layout-main-section.frappe-card {
+	background-color: var(--card-bg);
+	box-shadow: var(--ring);
+	border: none;
+	border-radius: var(--border-radius-xl);
+}
+
+// ── Page and section titles ─────────────────────────────────
+
+.page-title .title-text {
+	font-size: var(--text-2xl);
+	font-weight: var(--weight-semibold);
+	letter-spacing: var(--heading-letter-spacing);
+}
+
+.form-section .section-head {
+	font-size: var(--text-lg);
+	font-weight: var(--weight-semibold);
+	letter-spacing: var(--heading-letter-spacing);
+}
+
+// ── List and report headers: uppercase, xs, muted ───────────
+
+.list-row-head {
+	background-color: var(--lumenos-band);
+	border-radius: var(--border-radius-lg);
+
+	.list-row-col,
+	.list-subject,
+	.list-count {
+		font-size: var(--text-xs);
+		font-weight: var(--weight-medium);
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: var(--text-muted);
+	}
+
+	.level-right {
+		background-color: transparent;
+	}
+}
+
+.dt-cell--header .dt-cell__content {
+	font-size: var(--text-xs);
+	font-weight: var(--weight-medium);
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: var(--text-muted);
+}
+
+// ── Menus: radius 10, 4px inset, items radius 8 ─────────────
+
+.dropdown-menu {
+	border: none;
+	border-radius: var(--border-radius-lg);
+	padding: 4px;
+	box-shadow: var(--shadow-md);
+}
+
+.dropdown-item {
+	border-radius: var(--border-radius);
+
+	&:hover,
+	&:focus {
+		background-color: var(--gray-100);
+	}
+}
+
+.dropdown-divider {
+	margin: 4px -4px;
+	border-color: var(--border-color);
+}
+
+// ── Dialogs: radius 14, ring, muted footer ──────────────────
+
+.modal-content {
+	border: none;
+	border-radius: var(--border-radius-xl);
+	box-shadow: var(--shadow-lg);
+	overflow: hidden;
+}
+
+.modal-backdrop.show {
+	opacity: 1;
+	background-color: rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(4px);
+}
+
+.modal-title {
+	font-size: var(--text-lg);
+	font-weight: var(--weight-medium);
+	letter-spacing: var(--heading-letter-spacing);
+}
+
+.modal-footer {
+	background-color: var(--lumenos-band);
+	border-top: 1px solid var(--border-color);
+}
+
+// ── Sidebar items: radius 8 ─────────────────────────────────
+
+.standard-sidebar-item {
+	border-radius: var(--border-radius);
+}

@@ -90,7 +90,6 @@
 
 {% macro logo_section(title=null, subtitle=null) %}
 <div class="page-card-head">
-	<img class="app-logo" src="{{ logo }}">
 	<div class="page-card-head-text">
 		{% if title %}
 		<h4>{{ _(title) }}</h4>
@@ -107,6 +106,28 @@
 {% block page_content %}
 
 <!-- {{ for_test }} -->
+<div class="login-split">
+	<aside class="login-brand">
+		<span class="login-brand-tag">{{ _("A Gödel Earth product") }}</span>
+		<img class="login-brand-logo" src="/assets/erpnext/images/lumenos-logo-cream.svg" alt="LumenOS">
+		<svg class="login-diagram" viewBox="0 -76 480 848" role="img" aria-label="{{ _('One AI agent working across every module on one database') }}" preserveAspectRatio="xMidYMid meet">
+		<path class="ld-line" d="M136 134 V638"/>
+		<path class="ld-pulse" d="M136 134 V638" pathLength="100" style="--ld-delay:0.0s"/>
+		<path class="ld-line" d="M344 134 V638"/>
+		<path class="ld-pulse" d="M344 134 V638" pathLength="100" style="--ld-delay:2.0s"/>
+		{% set hl1 = _("All your enterprise data,").split() %}{% set hl2 = _("at your fingertips.").split() %}<text class="ld-headline" x="240" y="-30" text-anchor="middle">{% for w in hl1 %}<tspan class="ld-word" style="--w:{{ loop.index0 }}">{{ w }}</tspan> {% endfor %}</text><text class="ld-headline" x="240" y="4" text-anchor="middle" style="--ld-in:0.08s">{% for w in hl2 %}<tspan class="ld-word" style="--w:{{ hl1|length + loop.index0 }}">{{ w }}</tspan> {% endfor %}</text><g class="ld-box ld-agent" style="--ld-delay:0s;--ld-in:0.0s"><rect x="40" y="70" width="400" height="64"/><rect class="ld-glow" x="40" y="70" width="400" height="64"/><g class="ld-icon" transform="translate(64 90)"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /> <path d="M20 2v4" /> <path d="M22 4h-4" /> <circle cx="4" cy="20" r="2" /></g><text x="240" y="108" text-anchor="middle">{{ _("Enterprise AI agent") }}</text></g>
+		<g class="ld-box ld-mod" style="--ld-delay:0.8s;--ld-in:0.2s"><rect x="40" y="230" width="192" height="60"/><rect class="ld-glow" x="40" y="230" width="192" height="60"/><g class="ld-icon" transform="translate(60 248)"><path d="m11 17 2 2a1 1 0 1 0 3-3" /> <path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" /> <path d="m21 3 1 11h-2" /> <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" /> <path d="M3 4h8" /></g><text x="96" y="267">{{ _("Sales CRM") }}</text></g>
+		<g class="ld-box ld-mod" style="--ld-delay:2.8s;--ld-in:0.27s"><rect x="248" y="230" width="192" height="60"/><rect class="ld-glow" x="248" y="230" width="192" height="60"/><g class="ld-icon" transform="translate(268 248)"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z" /> <path d="M12 22V12" /> <polyline points="3.29 7 12 12 20.71 7" /> <path d="m7.5 4.27 9 5.15" /></g><text x="304" y="267">{{ _("Inventory") }}</text></g>
+		<g class="ld-box ld-mod" style="--ld-delay:1.47s;--ld-in:0.34s"><rect x="40" y="314" width="192" height="60"/><rect class="ld-glow" x="40" y="314" width="192" height="60"/><g class="ld-icon" transform="translate(60 332)"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" /> <path d="M15 18H9" /> <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14" /> <circle cx="17" cy="18" r="2" /> <circle cx="7" cy="18" r="2" /></g><text x="96" y="351">{{ _("Vendors") }}</text></g>
+		<g class="ld-box ld-mod" style="--ld-delay:3.47s;--ld-in:0.41s"><rect x="248" y="314" width="192" height="60"/><rect class="ld-glow" x="248" y="314" width="192" height="60"/><g class="ld-icon" transform="translate(268 332)"><rect width="18" height="18" x="3" y="3" rx="2" /> <path d="M8 7v7" /> <path d="M12 7v4" /> <path d="M16 7v9" /></g><text x="304" y="351">{{ _("Projects") }}</text></g>
+		<g class="ld-box ld-mod" style="--ld-delay:2.13s;--ld-in:0.48s"><rect x="40" y="398" width="192" height="60"/><rect class="ld-glow" x="40" y="398" width="192" height="60"/><g class="ld-icon" transform="translate(60 416)"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" /> <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" /></g><text x="96" y="435">{{ _("Accounts") }}</text></g>
+		<g class="ld-box ld-mod" style="--ld-delay:0.13s;--ld-in:0.55s"><rect x="248" y="398" width="192" height="60"/><rect class="ld-glow" x="248" y="398" width="192" height="60"/><g class="ld-icon" transform="translate(268 416)"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /> <path d="M16 3.128a4 4 0 0 1 0 7.744" /> <path d="M22 21v-2a4 4 0 0 0-3-3.87" /> <circle cx="9" cy="7" r="4" /></g><text x="304" y="435">{{ _("People") }}</text></g>
+		<g class="ld-box ld-mod" style="--ld-delay:2.8s;--ld-in:0.62s"><rect x="40" y="482" width="192" height="60"/><rect class="ld-glow" x="40" y="482" width="192" height="60"/><g class="ld-icon" transform="translate(60 500)"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z" /></g><text x="96" y="519">{{ _("Maintenance") }}</text></g>
+		<g class="ld-box ld-mod" style="--ld-delay:0.8s;--ld-in:0.69s"><rect x="248" y="482" width="192" height="60"/><rect class="ld-glow" x="248" y="482" width="192" height="60"/><g class="ld-icon" transform="translate(268 500)"><circle cx="12" cy="12" r="10" /> <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /> <path d="M2 12h20" /></g><text x="304" y="519">{{ _("Portals") }}</text></g>
+		<g class="ld-box ld-db" style="--ld-delay:3.8s;--ld-in:0.9s"><rect x="40" y="638" width="400" height="64"/><g class="ld-icon" transform="translate(64 658)"><ellipse cx="12" cy="5" rx="9" ry="3" /> <path d="M3 5V19A9 3 0 0 0 21 19V5" /> <path d="M3 12A9 3 0 0 0 21 12" /></g><text x="240" y="676" text-anchor="middle">{{ _("ONE DATABASE") }}</text></g>
+		</svg>
+	</aside>
+	<main class="login-main">
 <div>
 	<noscript>
 		<div class="text-center my-5">
@@ -232,10 +253,22 @@
 			{%- endif -%}
 		</div>
 	</section>
+	{%- if powered_by_logo -%}
+	<div class="login-powered-by">
+		<span>{{ _("Powered by") }}</span>
+		<img src="{{ powered_by_logo }}" alt="Gödel Earth">
+	</div>
+	{%- endif -%}
+</div>
+	</main>
 </div>
 {% endblock %}
 
 {% block script %}
+{%- if shader_controls %}
+<script>window.login_shader_controls = 1;</script>
+{{ include_script("login_shader.bundle.js") }}
+{%- endif %}
 <script>{% include "templates/includes/login/login.js" %}</script>
 {% endblock %}
 

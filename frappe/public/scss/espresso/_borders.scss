@@ -1,10 +1,11 @@
 :root {
 	--border-radius-tiny: 4px;
-	--border-radius-sm: 8px;
+	--border-radius-sm: 6px;
 	--border-radius: 8px;
-	--border-radius-md: 10px;
-	--border-radius-lg: 12px;
-	--border-radius-xl: 16px;
-	--border-radius-2xl: 20px;
+	// LumenOS (Lemma): base radius 10px; tags 8, controls 10, cards/dialogs 14
+	--border-radius-md: 8px;
+	--border-radius-lg: 10px;
+	--border-radius-xl: 14px;
+	--border-radius-2xl: 18px;
 	--border-radius-full: 999px;
 }

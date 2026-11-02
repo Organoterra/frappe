@@ -1,4 +1,4 @@
-$input-height: 28px;
+$input-height: 32px;
 $disabled-input-height: 22px;
 
 :root,
@@ -37,10 +37,11 @@ $disabled-input-height: 22px;
 	--bg-blue: var(--blue-100);
 	--bg-light-blue: var(--blue-50);
 	--bg-dark-blue: var(--blue-300);
-	--bg-green: var(--green-100);
-	--bg-yellow: var(--yellow-100);
+	// LumenOS (Lemma) status surfaces: done/met, caution, destructive
+	--bg-green: #e7f8f0;
+	--bg-yellow: #fff2d0;
 	--bg-orange: var(--orange-100);
-	--bg-red: var(--red-100);
+	--bg-red: #f9e7eb;
 	--bg-gray: var(--gray-100);
 	--bg-grey: var(--gray-100);
 	--bg-light-gray: var(--gray-100);
@@ -53,10 +54,10 @@ $disabled-input-height: 22px;
 	--text-on-blue: var(--blue-700);
 	--text-on-light-blue: var(--blue-600);
 	--text-on-dark-blue: var(--blue-800);
-	--text-on-green: var(--green-800);
-	--text-on-yellow: var(--yellow-700);
+	--text-on-green: #527971;
+	--text-on-yellow: #b98401;
 	--text-on-orange: var(--orange-700);
-	--text-on-red: var(--red-700);
+	--text-on-red: #be123c;
 	--text-on-gray: var(--gray-700);
 	--text-on-grey: var(--gray-700);
 	--text-on-darkgrey: var(--gray-800);
@@ -77,16 +78,16 @@ $disabled-input-height: 22px;
 	--alert-bg-success: var(--green-100);
 
 	// Layout Colors
-	--bg-color: white;
+	--bg-color: var(--cream);
 	--fg-color: white;
 	--subtle-accent: var(--gray-50);
 	--subtle-fg: var(--gray-100);
-	--navbar-bg: var(--neutral);
+	--navbar-bg: var(--cream);
 	--fg-hover-color: var(--gray-100);
 	--card-bg: var(--fg-color);
 	--disabled-text-color: var(--gray-600);
 	--disabled-control-bg: var(--gray-50);
-	--control-bg: var(--gray-100);
+	--control-bg: var(--fg-color);
 	--control-bg-on-gray: var(--gray-200);
 	--awesomebar-focus-bg: var(--fg-color);
 	--modal-bg: white;
@@ -97,8 +98,8 @@ $disabled-input-height: 22px;
 
 	// Button Colors
 	--btn-primary: var(--gray-900);
-	--btn-default-bg: var(--gray-100);
-	--btn-default-hover-bg: var(--gray-300);
+	--btn-default-bg: var(--fg-color);
+	--btn-default-hover-bg: var(--gray-100);
 	--btn-ghost-hover-bg: var(--gray-200);
 
 	// Border Colors
@@ -107,8 +108,8 @@ $disabled-input-height: 22px;
 	// Other Colors
 	--sidebar-select-color: var(--gray-100);
 
-	--scrollbar-thumb-color: var(--gray-400);
-	--scrollbar-track-color: var(--gray-200);
+	--scrollbar-thumb-color: rgba(0, 22, 52, 0.3);
+	--scrollbar-track-color: transparent;
 
 	--shadow-inset: inset 0px -1px 0px var(--gray-300);
 	--border-color: var(--gray-200);
@@ -128,7 +129,7 @@ $disabled-input-height: 22px;
 	--code-block-text: var(--gray-400);
 
 	--primary-color: var(--gray-900);
-	--btn-height: 28px;
+	--btn-height: 32px;
 
 	// input
 	--input-height: #{$input-height};

@@ -1392,7 +1392,7 @@ Object.assign(frappe.utils, {
 		return icon_html.get(0).outerHTML;
 	},
 	desktop_pallete: {
-		blue: "#0289F7",
+		blue: "#001634",
 		gray: "#7B808A",
 	},
 	icon(

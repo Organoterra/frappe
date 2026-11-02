@@ -540,3 +540,558 @@ body {
 		}
 	}
 }
+
+.login-powered-by {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	margin-top: 24px;
+	font-size: var(--text-xs);
+	color: var(--text-muted);
+
+	img {
+		height: 16px;
+		width: auto;
+	}
+}
+
+// Split layout: brand panel left, form right
+// In page flow (login.py sets full_width), so the website navbar and the
+// optional login footer stay visible and the page scrolls once.
+.page-content-wrapper:has(.login-split) {
+	padding-top: 0;
+	min-height: 0;
+}
+
+.login-split {
+	display: grid;
+	grid-template-columns: 1.1fr 1fr;
+	min-height: 100vh;
+	min-height: 100svh;
+	background: var(--bg-color);
+
+	@include media-breakpoint-down(lg) {
+		grid-template-columns: 1fr;
+		grid-template-rows: auto 1fr;
+	}
+}
+
+.login-main {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 40px 24px;
+
+	> div {
+		width: 100%;
+	}
+
+	.page-card {
+		max-width: 420px;
+		padding: 0;
+		min-height: 0;
+	}
+}
+
+.login-brand {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	min-height: 100%;
+	padding: 48px;
+	// Gödel Earth "Moving gradient" shader: the baked tileable texture, painted
+	// twice at different scales with soft-light, drifting one tile per loop.
+	--hm-tile: 1800px;
+	--hm-swell: 1.6;
+	--hm-x: 45%;
+	--hm-y: 40%;
+	background-image: var(--hm-image, url("/assets/frappe/images/login/shader.png")),
+		var(--hm-image, url("/assets/frappe/images/login/shader.png"));
+	background-size: var(--hm-tile) var(--hm-tile),
+		calc(var(--hm-tile) * var(--hm-swell)) calc(var(--hm-tile) * var(--hm-swell));
+	background-repeat: repeat;
+	background-position: var(--hm-x) var(--hm-y), var(--hm-x) var(--hm-y);
+	background-blend-mode: soft-light;
+	animation: heatmap-drift 45s linear infinite;
+	color: var(--cream);
+
+	@include media-breakpoint-down(lg) {
+		min-height: 0;
+		padding: 24px;
+	}
+
+	.login-brand-tag {
+		position: absolute;
+		z-index: 1;
+		top: 48px;
+		right: 48px;
+		font-family: var(--font-mono);
+		font-size: 12px;
+		line-height: 16px;
+		letter-spacing: 0.02em;
+		color: rgba(250, 248, 245, 0.9);
+		animation: ld-fade 0.8s ease-out both;
+		animation-delay: var(--ld-tag-delay, 1.6s);
+
+		@include media-breakpoint-down(lg) {
+			top: 32px;
+			right: 24px;
+		}
+	}
+
+	.login-brand-logo {
+		position: relative;
+		z-index: 1;
+		align-self: flex-start;
+		height: 16px;
+		width: auto;
+	}
+
+	.login-diagram {
+		flex: 1;
+		min-height: 0;
+		width: 100%;
+		max-width: 520px;
+		margin: 16px auto 0;
+		align-self: center;
+
+		@include media-breakpoint-down(lg) {
+			display: none;
+		}
+
+		// Timeline: headline alone at centre (0-1.4s), then it glides to the top
+		// while the tags come in from --ld-base; the pulse loops once all are in.
+		--ld-base: 1.6s;
+		--ld-start: 3s;
+
+		.ld-box {
+			--ld-ink: var(--navy);
+		}
+
+		.ld-box rect:first-child {
+			transform-box: fill-box;
+			transform-origin: center;
+			animation: ld-expand 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+			animation-delay: calc(var(--ld-in, 0s) + var(--ld-base));
+		}
+
+		text {
+			font-family: var(--font-stack);
+			font-size: 19px;
+			font-weight: 500;
+			letter-spacing: -0.02em;
+			fill: var(--ld-ink);
+			animation: ld-text 4s ease-in-out infinite, ld-fade 0.5s ease-out both;
+			animation-delay: calc(var(--ld-delay, 0s) + var(--ld-start)),
+				calc(var(--ld-in, 0s) + var(--ld-base) + 0.45s);
+		}
+
+		.ld-headline {
+			font-size: 30px;
+			font-weight: 500;
+			letter-spacing: -0.045em;
+			fill: #fff;
+			animation: ld-headline 2.4s both;
+			animation-delay: var(--ld-in, 0s);
+		}
+
+		// One word at a time while the headline sits at centre.
+		.ld-word {
+			animation: ld-word 0.5s ease-out both;
+			animation-delay: calc(0.2s + var(--w, 0) * 0.16s);
+		}
+
+		.ld-icon {
+			width: 24px;
+			height: 24px;
+			fill: none;
+			stroke: var(--ld-ink);
+			stroke-width: 1.75;
+			stroke-linecap: round;
+			stroke-linejoin: round;
+			animation: ld-icon 4s ease-in-out infinite, ld-fade 0.5s ease-out both;
+			animation-delay: calc(var(--ld-delay, 0s) + var(--ld-start)),
+				calc(var(--ld-in, 0s) + var(--ld-base) + 0.45s);
+		}
+
+		.ld-line {
+			fill: none;
+			stroke: rgba(255, 255, 255, 0.6);
+			stroke-width: 1.5;
+			stroke-dasharray: 3 6;
+			animation: ld-flow 0.9s linear infinite,
+				ld-draw 0.9s cubic-bezier(0.45, 0, 0.2, 1) both;
+			animation-delay: 0s, calc(var(--ld-base) + 0.8s);
+		}
+
+		.ld-pulse {
+			fill: none;
+			stroke: #fff;
+			stroke-width: 3;
+			stroke-linecap: round;
+			stroke-dasharray: 9 91;
+			stroke-dashoffset: 9;
+			animation: ld-pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite,
+				ld-fade 0.6s ease-out both;
+			animation-delay: calc(var(--ld-delay, 0s) + var(--ld-start)), var(--ld-start);
+		}
+
+		.ld-box rect:first-child {
+			fill: var(--cream);
+		}
+
+		.ld-glow {
+			fill: var(--navy);
+			opacity: 0;
+			animation: ld-glow 4s ease-in-out infinite;
+			animation-delay: calc(var(--ld-delay, 0s) + var(--ld-start));
+		}
+
+		.ld-agent {
+			--ld-ink: var(--cream);
+			rect:first-child {
+				fill: var(--navy);
+			}
+		}
+
+		.ld-db {
+			.ld-icon {
+				animation: ld-fade 0.5s ease-out both;
+				animation-delay: calc(var(--ld-in, 0s) + var(--ld-base) + 0.45s);
+			}
+			rect:first-child {
+				fill: rgba(250, 248, 245, 0.82);
+			}
+			text {
+				animation: ld-fade 0.5s ease-out both;
+				animation-delay: calc(var(--ld-in, 0s) + var(--ld-base) + 0.45s);
+				font-size: 15px;
+				font-weight: 400;
+				letter-spacing: 0.12em;
+			}
+		}
+	}
+}
+
+@keyframes heatmap-drift {
+	from {
+		background-position: var(--hm-x) var(--hm-y), var(--hm-x) var(--hm-y);
+	}
+	to {
+		background-position: calc(var(--hm-x) - var(--hm-tile)) calc(var(--hm-y) - var(--hm-tile)),
+			calc(var(--hm-x) - var(--hm-tile) * var(--hm-swell))
+				calc(var(--hm-y) - var(--hm-tile) * var(--hm-swell));
+	}
+}
+
+@keyframes ld-flow {
+	to {
+		stroke-dashoffset: -9;
+	}
+}
+
+@keyframes ld-pulse {
+	0% {
+		stroke-dashoffset: 9;
+	}
+	100% {
+		stroke-dashoffset: -91;
+	}
+}
+
+@keyframes ld-expand {
+	from {
+		transform: scale(0, 0.15);
+		opacity: 0;
+	}
+	40% {
+		opacity: 1;
+	}
+	60% {
+		transform: scale(1, 0.15);
+	}
+	to {
+		transform: scale(1, 1);
+		opacity: 1;
+	}
+}
+
+// Starts at the diagram's vertical centre (translateY 360 = half the viewBox),
+// fades in, holds, then moves to its place above the agent tag.
+@keyframes ld-headline {
+	0%,
+	58% {
+		transform: translateY(360px);
+	}
+	58% {
+		animation-timing-function: cubic-bezier(0.65, 0, 0.2, 1);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@keyframes ld-word {
+	from {
+		fill-opacity: 0;
+	}
+	to {
+		fill-opacity: 1;
+	}
+}
+
+@keyframes ld-draw {
+	from {
+		clip-path: inset(0 0 100% 0);
+	}
+	to {
+		clip-path: inset(0 0 0 0);
+	}
+}
+
+@keyframes ld-rise {
+	from {
+		opacity: 0;
+		transform: translateY(12px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes ld-fade {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes ld-text {
+	0% {
+		fill: var(--ld-ink);
+	}
+	8% {
+		fill: #fff;
+	}
+	35% {
+		fill: var(--ld-ink);
+	}
+	100% {
+		fill: var(--ld-ink);
+	}
+}
+
+@keyframes ld-icon {
+	0% {
+		stroke: var(--ld-ink);
+	}
+	8% {
+		stroke: #fff;
+	}
+	35% {
+		stroke: var(--ld-ink);
+	}
+	100% {
+		stroke: var(--ld-ink);
+	}
+}
+
+@keyframes ld-glow {
+	0% {
+		opacity: 0;
+	}
+	8% {
+		opacity: 1;
+	}
+	35% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.login-brand {
+		animation: none;
+	}
+	.login-brand .login-brand-tag {
+		animation: none;
+	}
+	.login-brand .login-diagram {
+		.ld-line,
+		.ld-pulse,
+		.ld-glow,
+		text,
+		.ld-icon,
+		.ld-headline,
+		.ld-word,
+		.ld-box rect:first-child {
+			animation: none;
+		}
+		.ld-pulse {
+			display: none;
+		}
+	}
+}
+
+// Shader controls (developer mode): Cmd/Ctrl + .
+.login-shader-panel {
+	position: fixed;
+	left: 16px;
+	bottom: 16px;
+	z-index: 20;
+	width: 280px;
+	max-height: calc(100vh - 32px);
+	overflow-y: auto;
+	padding: 14px 16px 16px;
+	background: rgba(250, 248, 245, 0.96);
+	color: var(--navy);
+	border-radius: 8px;
+	box-shadow: 0 8px 32px rgba(0, 22, 52, 0.28);
+	font-size: 12px;
+
+	&[hidden] {
+		display: none;
+	}
+
+	.lsp-title {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		margin-bottom: 10px;
+		font-size: 14px;
+		font-weight: 600;
+		letter-spacing: -0.02em;
+
+		span {
+			font-size: 11px;
+			font-weight: 400;
+			color: var(--gray-600);
+		}
+	}
+
+	.lsp-row {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		gap: 2px 8px;
+		margin: 0 0 8px;
+		font-weight: 400;
+
+		input[type="range"] {
+			grid-column: 1 / -1;
+			width: 100%;
+			height: 14px;
+			margin: 0;
+			accent-color: var(--navy);
+		}
+
+		output {
+			font-variant-numeric: tabular-nums;
+			color: var(--gray-600);
+		}
+
+		select {
+			grid-column: 1 / -1;
+			height: 28px;
+			border: 1px solid var(--gray-300);
+			border-radius: 4px;
+			background: #fff;
+			color: var(--navy);
+		}
+	}
+
+	.lsp-actions {
+		display: flex;
+		gap: 6px;
+		margin-top: 12px;
+
+		button {
+			flex: 1;
+			height: 28px;
+			border: 1px solid var(--navy);
+			border-radius: 4px;
+			background: transparent;
+			color: var(--navy);
+			font-size: 12px;
+			cursor: pointer;
+
+			&:hover {
+				background: var(--navy);
+				color: var(--cream);
+			}
+		}
+	}
+}
+
+// Sign-in form: no card, just the Lemma (AI Hiring) tokens in navy and cream.
+.login-split .login-main {
+	.page-card {
+		background-color: transparent;
+		box-shadow: none;
+		border: none;
+	}
+
+	.page-card-head {
+		h4 {
+			font-weight: 600;
+			letter-spacing: var(--heading-letter-spacing, -0.03em);
+			color: var(--navy);
+		}
+
+		.page-card-subtitle {
+			color: var(--text-muted);
+		}
+	}
+
+	form .form-label {
+		font-size: 14px;
+		font-weight: 500;
+		color: var(--navy);
+	}
+
+	form .form-control {
+		height: 32px;
+		background-color: var(--fg-color, #fff);
+		border: 1px solid var(--border-color);
+		border-radius: 10px;
+		box-shadow: none;
+
+		&:focus {
+			border-color: var(--navy);
+			box-shadow: 0 0 0 3px rgba(0, 22, 52, 0.18);
+		}
+	}
+
+	.page-card-actions .btn-login,
+	.page-card-actions .btn-ldap-login {
+		height: 36px;
+		border-radius: 10px;
+		font-weight: 500;
+		background: var(--navy);
+
+		&:hover,
+		&:focus {
+			background: rgba(0, 22, 52, 0.85);
+		}
+	}
+
+	.page-card-actions .btn-default,
+	.page-card-actions .btn-login-option {
+		height: 36px;
+		border-radius: 10px;
+		font-weight: 500;
+		background: var(--fg-color, #fff);
+		border: 1px solid var(--border-color);
+		color: var(--navy);
+	}
+
+	.sign-up-message {
+		color: var(--text-muted);
+	}
+}
